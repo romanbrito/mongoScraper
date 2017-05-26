@@ -41,7 +41,7 @@ router.get("/scrape", function(req, res) {
         });
     });
     // Tell the browser that we finished scraping the text
-    res.redirect("/");
+    // res.send("Scrape Complete");
 });
 
 

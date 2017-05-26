@@ -1,0 +1,23 @@
+var express = require("express");
+var router = express.Router();
+// Requiring our Note and Article models
+var Note = require("../models/Note.js");
+var Article = require("../models/Article.js");
+
+
+// This will get the articles we scraped from the mongoDB
+router.get("/articles", function(req, res) {
+    // Grab every doc in the Articles array
+    Article.find({}, function(error, doc) {
+        // Log any errors
+        if (error) {
+            console.log(error);
+        }
+        // Or send the doc to the browser as a json object
+        else {
+            res.json(doc);
+        }
+    });
+});
+
+module.exports = router;
