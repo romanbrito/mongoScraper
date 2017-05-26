@@ -4,8 +4,6 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 var mongoose = require('mongoose');
-var request = require('request');
-var cheerio = require('cheerio');
 
 // Set up Express app
 var app = express();
@@ -37,11 +35,11 @@ app.set('view engine', 'handlebars');
 // Routes
 // app.use(require('./controllers'));
 app.use(require('./routes/main'));
-
+app.use(require('./routes/scrape'));
 
 // MONGOOSE
 
-// hook mongoose with our mongodb database: week18day3mongoose
+// hook mongoose with our mongodb database
 mongoose.connect("mongodb://localhost/scraper");
 
 // save our mongoose connection to db
