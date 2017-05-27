@@ -8,14 +8,19 @@ var Article = require("../models/Article.js");
 
 // A GET request to scrape the echojs website
 router.get("/scrape", function(req, res) {
-    var numArticles = 33333;
+    var accepted = 0;
+    var rejected = 0;
+    var total = 0;
+    var entries = 0;
+
     // First, we grab the body of the html with request
     request("https://news.ycombinator.com/", function(error, response, html) {
         // Then, we load that into cheerio and save it to $ for a shorthand selector
         var $ = cheerio.load(html);
-        // Now, we grab every h2 within an article tag, and do the following:
-        $(".title").each(function (i, element) {
+        // Now, we grab every desired element within a class
+        var articleElement = ".title";
 
+        $(articleElement).each(function (i, element) {
             // Save an empty result object
             var result = {};
 
@@ -29,25 +34,46 @@ router.get("/scrape", function(req, res) {
 
             // Now, save that entry to the db
             entry.save(function(err, doc) {
+                entries++;
                 // Log any errors
                 if (err) {
-                    console.log(err);
+                    //console.log(err);
+                    rejected++;
+                    total = accepted + rejected;
+                    console.log("the rejected are " + rejected);
+                    console.log("total is " + total);
+                    console.log("the length is " + $(articleElement).length);
+                    if (total == $(articleElement).length) {
+                        var hbsObject = {
+                            numberArticles: accepted
+                        };
+                        res.render("modal", hbsObject);
+                        //res.json(accepted);
+                    }
                 }
                 // Or log the doc
                 else {
-                    console.log(doc);
-                    numArticles = doc.length;
+                    //console.log(doc);
+                    accepted++;
+                    total = accepted + rejected;
+                    console.log("the accepted are " + accepted);
+                    console.log("total is " + total);
+                    console.log("the length is " + $(articleElement).length);
+                    if (total == $(articleElement).length) {
+                        var hbsObject = {
+                            numberArticles: accepted
+                        };
+                        res.render("modal", hbsObject);
+                        //res.json(accepted);
+                    }
                 }
             });
-
         });
     });
     // Tell the browser that we finished scraping the text
-    res.render("modal");
-    //res.json(numArticles);
+    //res.render("modal");
+    //res.json(counter);
 });
 
 
 module.exports = router;
-
-

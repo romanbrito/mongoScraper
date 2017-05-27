@@ -2,6 +2,8 @@
 var mongoose = require("mongoose");
 // Create Schema class
 var Schema = mongoose.Schema;
+// Set mongoose to leverage built in JavaScript ES6 Promises
+mongoose.Promise = Promise;
 
 // Create article schema
 var ArticleSchema = new Schema({
