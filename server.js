@@ -41,6 +41,7 @@ app.use(require('./routes/scrape'));
 
 // hook mongoose with our mongodb database
 mongoose.connect("mongodb://localhost/scraper");
+mongoose.Promise = Promise;
 
 // save our mongoose connection to db
 var db = mongoose.connection;
