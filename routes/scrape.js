@@ -7,6 +7,9 @@ var Article = require("../models/Article");
 
 // A GET request to scrape the echojs website
 router.get("/scrape", function (req, res) {
+    // drop collection to get new articles
+    Article.collection.drop();
+
     var accepted = 0;
     var rejected = 0;
     var total = 0;
