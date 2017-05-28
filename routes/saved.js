@@ -18,7 +18,7 @@ router.get("/saved", function (req, res) {
                 showTitle: true
             };
             res.render("savedArticles", hbsObject);
-            // res.json(hbsObject);
+            //res.json(hbsObject);
         }
     });
 });
