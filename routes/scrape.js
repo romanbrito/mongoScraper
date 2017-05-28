@@ -2,19 +2,18 @@ var express = require("express");
 var router = express.Router();
 var request = require('request');
 var cheerio = require('cheerio');
-// Requiring our Note and Article models
-var Note = require("../models/Note.js");
-var Article = require("../models/Article.js");
+// Requiring Article model
+var Article = require("../models/Article");
 
 // A GET request to scrape the echojs website
-router.get("/scrape", function(req, res) {
+router.get("/scrape", function (req, res) {
     var accepted = 0;
     var rejected = 0;
     var total = 0;
     var entries = 0;
 
     // First, we grab the body of the html with request
-    request("https://news.ycombinator.com/", function(error, response, html) {
+    request("https://news.ycombinator.com/", function (error, response, html) {
         // Then, we load that into cheerio and save it to $ for a shorthand selector
         var $ = cheerio.load(html);
         // Now, we grab every desired element within a class
@@ -33,17 +32,14 @@ router.get("/scrape", function(req, res) {
             var entry = new Article(result);
 
             // Now, save that entry to the db
-            entry.save(function(err, doc) {
+            entry.save(function (err, doc) {
                 entries++;
                 // Log any errors
                 if (err) {
-                    //console.log(err);
+                    console.log(err);
                     rejected++;
                     total = accepted + rejected;
-                    console.log("the rejected are " + rejected);
-                    console.log("total is " + total);
-                    console.log("the length is " + $(articleElement).length);
-                    if (total == $(articleElement).length) {
+                    if (total === $(articleElement).length) {
                         var hbsObject = {
                             numberArticles: accepted
                         };
@@ -56,10 +52,7 @@ router.get("/scrape", function(req, res) {
                     //console.log(doc);
                     accepted++;
                     total = accepted + rejected;
-                    console.log("the accepted are " + accepted);
-                    console.log("total is " + total);
-                    console.log("the length is " + $(articleElement).length);
-                    if (total == $(articleElement).length) {
+                    if (total === $(articleElement).length) {
                         var hbsObject = {
                             numberArticles: accepted
                         };

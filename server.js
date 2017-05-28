@@ -37,6 +37,7 @@ app.set('view engine', 'handlebars');
 app.use(require('./routes/main'));
 app.use(require('./routes/scrape'));
 app.use(require('./routes/article'));
+app.use(require('./routes/saveArticle'));
 
 // MONGOOSE
 
