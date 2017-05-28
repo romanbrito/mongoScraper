@@ -26,7 +26,8 @@ router.get("/articles/:id", function(req, res) {
                     if (err) {
                         console.log(err);
                     } else {
-                        res.json(savedArt);
+                        // res.json(savedArt);
+                        res.redirect("/");
                     }
                 });
             }

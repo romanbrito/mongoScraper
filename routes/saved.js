@@ -5,7 +5,7 @@ var router = express.Router();
 var Note = require("../models/Note.js");
 var savedArticle = require("../models/savedArticle");
 
-router.get("/", function (req, res) {
+router.get("/saved", function (req, res) {
     savedArticle.find({}, function (error, doc) {
         // Log any errors
         if (error) {
@@ -16,7 +16,7 @@ router.get("/", function (req, res) {
             var hbsObject = {
                 article: doc
             };
-            res.render("index", hbsObject);
+            res.render("savedArticles", hbsObject);
             // res.json(hbsObject);
         }
     });

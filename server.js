@@ -38,6 +38,7 @@ app.use(require('./routes/main'));
 app.use(require('./routes/scrape'));
 app.use(require('./routes/article'));
 app.use(require('./routes/saveArticle'));
+app.use(require('./routes/saved'));
 
 // MONGOOSE
 
