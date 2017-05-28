@@ -1,5 +1,9 @@
 <div class="jumbotron">
     <h1>Mongo Scraper</h1>
     <p>Hacker News Edition</p>
-    <!--  <p><a class="btn btn-primary btn-lg">Learn more</a></p>-->
+    {{#if showTitle}}
+        <h2>Saved Articles</h2>
+    {{else}}
+        <h2>Scraped Articles</h2>
+    {{/if}}
 </div>

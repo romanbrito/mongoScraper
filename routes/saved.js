@@ -14,7 +14,8 @@ router.get("/saved", function (req, res) {
         // Or send the doc to the browser as a json object
         else {
             var hbsObject = {
-                article: doc
+                article: doc,
+                showTitle: true
             };
             res.render("savedArticles", hbsObject);
             // res.json(hbsObject);
