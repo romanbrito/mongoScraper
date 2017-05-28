@@ -41,10 +41,20 @@ app.use(require('./routes/saveArticle'));
 app.use(require('./routes/saved'));
 
 // MONGOOSE
+mongoose.Promise = Promise;
 
 // hook mongoose with our mongodb database
-mongoose.connect("mongodb://localhost/scraper");
-mongoose.Promise = Promise;
+//local uri
+var databaseUri = 'mongodb://localhost/scraper';
+
+if (process.env.MONGODB_URI) {
+    mongoose.connect(process.env.MONGODB_URI);
+} else {
+    mongoose.connect(databaseUri);
+}
+
+// end database config
+
 
 // save our mongoose connection to db
 var db = mongoose.connection;
