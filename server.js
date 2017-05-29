@@ -39,6 +39,7 @@ app.use(require('./routes/scrape'));
 app.use(require('./routes/article'));
 app.use(require('./routes/saveArticle'));
 app.use(require('./routes/saved'));
+app.use(require('./routes/saveNote'));
 
 // MONGOOSE
 mongoose.Promise = Promise;
