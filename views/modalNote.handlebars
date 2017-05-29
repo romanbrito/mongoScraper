@@ -1,4 +1,4 @@
-<div id="noteModal{{this._id}}" class="modal">
+<div id="noteModal" class="modal">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -7,12 +7,12 @@
                 <h4 id="articlesAdded" class="modal-title"></h4>
             </div>
             <div class="modal-body">
-                <form action="/savedArticles/{{this.id}}" method="post" class="form-horizontal">
+                <form action="/savedArticles/{{saveArticle.id}}" method="post" class="form-horizontal">
                     <fieldset>
-                        <legend>Notes For Article: {{this._id}}</legend>
+                        <legend>Notes For Article: {{saveArticle._id}}</legend>
                         <div class="form-group">
                             <div class="col-lg-10">
-                                <textarea class="form-control" rows="3" id="textArea" name="body"></textarea>
+                                <textarea class="form-control" rows="3" id="textArea" name="body" placeholder="{{saveArticle.note.body}}"></textarea>
                                 <span class="help-block">New note</span>
                             </div>
                         </div>

@@ -7,12 +7,11 @@
             <div class="form-group">
                     <a href="/delete/{{this._id}}" class="btn btn-danger">Delete</a>
 
-                    <!-- Trigger the modal with a button -->
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#noteModal{{this._id}}">Notes</button>
+
+                    <a href="/savedArticles/{{this._id}}" class="btn btn-primary">Notes</a>
 
             </div>
         </li>
 
-        {{> modalNote }}
     {{/each}}
 </ul>

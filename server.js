@@ -40,6 +40,7 @@ app.use(require('./routes/article'));
 app.use(require('./routes/saveArticle'));
 app.use(require('./routes/saved'));
 app.use(require('./routes/saveNote'));
+app.use(require('./routes/note'));
 
 // MONGOOSE
 mongoose.Promise = Promise;
