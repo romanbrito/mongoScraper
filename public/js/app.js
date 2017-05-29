@@ -19,5 +19,6 @@ $(document).on("click", "#savedArticles", function() {
 // Modal trigger
 $( document ).ready(function() {
     $("#myModal").modal();
+    $("#noteModal").modal();
 });
 
