@@ -26,7 +26,8 @@ router.post("/savedArticles/:id", function(req, res) {
                     }
                     else {
                         // Or send the document to the browser
-                        res.send(doc);
+                        //res.send(doc);
+                        res.redirect("/saved");
                     }
                 });
         }
